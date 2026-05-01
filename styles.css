@@ -86,15 +86,29 @@ body {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  transition: transform 140ms ease, background-color 140ms ease;
+  scale: 1;
+  translate: 0 0;
+  animation: join-pulse 1.6s ease-in-out infinite;
+  transition: translate 140ms ease, background-color 140ms ease;
 }
 
 .join-button:hover {
-  transform: translateY(-1.5%);
+  translate: 0 -1.5%;
 }
 
 .join-button:active {
-  transform: translateY(0);
+  translate: 0 0;
+}
+
+@keyframes join-pulse {
+  0%,
+  100% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.04;
+  }
 }
 
 .join-button:focus-visible {
