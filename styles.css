@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400&display=swap");
+
+:root {
+  --blue: #0000ff;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: "Pixelify Sans", "Courier New", Courier, monospace;
+}
+
+.landing {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.stage {
+  --frame-width: 1440;
+  --frame-height: 1024;
+  position: relative;
+  container-type: inline-size;
+  width: min(100vw, calc(100vh * var(--frame-width) / var(--frame-height)));
+  aspect-ratio: 1440 / 1024;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.wordmark {
+  position: absolute;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.wordmark-mobile {
+  display: none;
+}
+
+.wordmark-top {
+  top: 5.078125%;
+  left: 6.944444%;
+  width: 86.527778%;
+  height: 50.494434%;
+}
+
+.wordmark-bottom {
+  top: 62.207031%;
+  left: 7.222222%;
+  width: 87.243056%;
+  height: 35.214844%;
+}
+
+.join-button {
+  position: absolute;
+  top: 50%;
+  left: 31.805556%;
+  display: grid;
+  width: 36.875%;
+  height: 9.365527%;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Pixelify Sans", "Courier New", Courier, monospace;
+  font-size: clamp(1rem, 6.73cqw, 6.06rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 140ms ease, background-color 140ms ease;
+}
+
+.join-button:hover {
+  transform: translateY(-1.5%);
+}
+
+.join-button:active {
+  transform: translateY(0);
+}
+
+.join-button:focus-visible {
+  outline: max(2px, 0.25vw) solid var(--blue);
+  outline-offset: max(3px, 0.35vw);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@supports not (font-size: 1cqw) {
+  .join-button {
+    font-size: clamp(1rem, 6.73vw, 6.06rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .stage {
+    --frame-width: 390;
+    --frame-height: 844;
+    aspect-ratio: 390 / 844;
+  }
+
+  .wordmark-desktop {
+    display: none;
+  }
+
+  .wordmark-mobile {
+    display: block;
+  }
+
+  .wordmark-top {
+    top: 27.251185%;
+    left: 3.846154%;
+    width: 92.307692%;
+    height: 17.701422%;
+  }
+
+  .wordmark-bottom {
+    top: 56.516588%;
+    left: 3.846154%;
+    width: 95.128205%;
+    height: 12.606635%;
+  }
+
+  .join-button {
+    top: 46.563981%;
+    left: 9.487179%;
+    width: 81.025641%;
+    height: 6.761611%;
+    font-size: clamp(2.5rem, 14.79cqw, 3.6rem);
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (min-width: 701px) {
+  .stage {
+    --frame-width: 1440;
+    --frame-height: 1024;
+    aspect-ratio: 1440 / 1024;
+  }
+
+  .wordmark-desktop {
+    display: block;
+  }
+
+  .wordmark-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) and (max-aspect-ratio: 390 / 844) {
+  .stage {
+    width: 100vw;
+  }
+}
+
+@supports not (font-size: 1cqw) {
+  @media (max-width: 700px) {
+    .join-button {
+      font-size: clamp(2.5rem, 14.79vw, 3.6rem);
+    }
+  }
+}
