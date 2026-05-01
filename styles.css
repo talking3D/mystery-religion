@@ -93,6 +93,7 @@ body {
 }
 
 .join-button:hover {
+  background: var(--blue);
   translate: 0 -1.5%;
 }
 
