@@ -80,7 +80,16 @@ async function submitAcceptedApplication(email) {
   });
 
   if (!response.ok) {
-    throw new Error("Submission failed");
+    let message = "Submission failed";
+
+    try {
+      const data = await response.json();
+      message = data.error || message;
+    } catch (error) {
+      message = `${message}: ${response.status}`;
+    }
+
+    throw new Error(message);
   }
 }
 

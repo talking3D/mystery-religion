@@ -63,6 +63,8 @@ async function getAccessToken() {
   });
 
   if (!response.ok) {
+    const details = await response.text();
+    console.error("Google auth failed:", details);
     throw new Error("Could not authorize with Google");
   }
 
@@ -122,6 +124,8 @@ async function appendToSheet(payload) {
   });
 
   if (!response.ok) {
+    const details = await response.text();
+    console.error("Google Sheets append failed:", details);
     throw new Error("Could not append row to Google Sheet");
   }
 }
@@ -150,6 +154,6 @@ module.exports = async function handler(request, response) {
     response.status(200).json({ ok: true });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error: "Could not save submission" });
+    response.status(500).json({ error: error.message || "Could not save submission" });
   }
 };
