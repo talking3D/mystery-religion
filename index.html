@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mystery Religion</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="landing" aria-labelledby="site-title">
@@ -16,30 +16,206 @@
           alt=""
           aria-hidden="true"
           draggable="false"
-        >
+        />
         <img
           class="wordmark wordmark-top wordmark-mobile"
           src="./assets/mystery-mobile.svg"
           alt=""
           aria-hidden="true"
           draggable="false"
+        />
+        <a
+          class="join-button"
+          href="#join-form"
+          aria-label="Join Mystery Religion"
+          >JOIN</a
         >
-        <a class="join-button" href="#" aria-label="Join Mystery Religion">JOIN</a>
         <img
           class="wordmark wordmark-bottom wordmark-desktop"
           src="./assets/religion-bottom.svg"
           alt=""
           aria-hidden="true"
           draggable="false"
-        >
+        />
         <img
           class="wordmark wordmark-bottom wordmark-mobile"
           src="./assets/religion-mobile.svg"
           alt=""
           aria-hidden="true"
           draggable="false"
-        >
+        />
       </section>
     </main>
+    <section class="form-page" id="join-form" aria-labelledby="form-title" hidden>
+      <h2 id="form-title" class="form-intro">
+        please fill out the form
+        <span class="underlined">truthfully.</span> We will see if
+        you&rsquo;re a <strong>suitable candidate</strong> to join our
+        organisation
+      </h2>
+      <form class="join-form">
+        <div class="form-field">
+          <label for="candidate-name">name</label>
+          <input
+            id="candidate-name"
+            name="name"
+            type="text"
+            placeholder="type here..."
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="current-thought">what do you think right now?</label>
+          <input
+            id="current-thought"
+            name="current-thought"
+            type="text"
+            placeholder="type here..."
+            required
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="favourite-colour">favourite colour?</label>
+          <input
+            id="favourite-colour"
+            name="favourite-colour"
+            type="text"
+            placeholder="type here..."
+            required
+          />
+        </div>
+
+        <fieldset class="form-field choice-field">
+          <legend>do you feel anxious right now?</legend>
+          <div class="choice-row">
+            <input
+              class="choice-input"
+              id="anxious-yes"
+              name="anxious"
+              type="radio"
+              value="yes"
+              required
+            />
+            <label class="choice-button" for="anxious-yes">YES</label>
+            <input
+              class="choice-input"
+              id="anxious-no"
+              name="anxious"
+              type="radio"
+              value="no"
+            />
+            <label class="choice-button" for="anxious-no">NO</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-field choice-field">
+          <legend>do you believe in ghosts?</legend>
+          <div class="choice-row">
+            <input
+              class="choice-input"
+              id="ghosts-yes"
+              name="ghosts"
+              type="radio"
+              value="yes"
+              required
+            />
+            <label class="choice-button" for="ghosts-yes">YES</label>
+            <input
+              class="choice-input"
+              id="ghosts-no"
+              name="ghosts"
+              type="radio"
+              value="no"
+            />
+            <label class="choice-button" for="ghosts-no">NO</label>
+          </div>
+        </fieldset>
+
+        <div class="form-field">
+          <label for="lucky-number">pick a number... any number...</label>
+          <input
+            id="lucky-number"
+            name="lucky-number"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="type here..."
+            required
+          />
+        </div>
+
+        <button class="form-submit" type="submit" disabled>JOIN</button>
+      </form>
+    </section>
+    <section
+      class="result-page success-page"
+      id="accepted"
+      aria-labelledby="success-title"
+      hidden
+    >
+      <div class="result-stage success-stage">
+        <h2 id="success-title" class="result-message success-message">
+          <span>congrats...</span>
+          <span>you made it...</span>
+          <span>we will contact</span>
+          <span>you soon</span>
+        </h2>
+        <form class="email-form" aria-label="Enter e-mail">
+          <div class="email-field">
+            <label for="candidate-email">enter e-mail</label>
+            <input
+              id="candidate-email"
+              name="email"
+              type="email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
+              placeholder="type here..."
+              autocomplete="email"
+              title="Enter an e-mail address with @ and a domain ending, for example name@example.com"
+              required
+            />
+          </div>
+          <button
+            class="email-submit"
+            type="submit"
+            aria-label="Send e-mail"
+            disabled
+          >
+            <img
+              src="./assets/arrow-button.svg"
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+            />
+          </button>
+        </form>
+        <div class="email-sent" role="status" aria-live="polite" hidden>
+          <img
+            src="./assets/wink-send.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
+        </div>
+      </div>
+    </section>
+    <section
+      class="result-page failure-page"
+      id="declined"
+      aria-labelledby="failure-title"
+      hidden
+    >
+      <div class="result-stage failure-stage">
+        <h2 id="failure-title" class="result-message failure-message">
+          <span>sorry</span>
+          <span>not this time</span>
+          <span>good luck on your</span>
+          <span>journey....</span>
+        </h2>
+      </div>
+    </section>
+    <script src="./script.js"></script>
   </body>
 </html>
