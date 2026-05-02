@@ -150,6 +150,72 @@
         <button class="form-submit" type="submit" disabled>JOIN</button>
       </form>
     </section>
+    <section
+      class="result-page success-page"
+      id="accepted"
+      aria-labelledby="success-title"
+      hidden
+    >
+      <div class="result-stage success-stage">
+        <h2 id="success-title" class="result-message success-message">
+          <span>congrats...</span>
+          <span>you made it...</span>
+          <span>we will contact</span>
+          <span>you soon</span>
+        </h2>
+        <form class="email-form" aria-label="Enter e-mail">
+          <div class="email-field">
+            <label for="candidate-email">enter e-mail</label>
+            <input
+              id="candidate-email"
+              name="email"
+              type="email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
+              placeholder="type here..."
+              autocomplete="email"
+              title="Enter an e-mail address with @ and a domain ending, for example name@example.com"
+              required
+            />
+          </div>
+          <button
+            class="email-submit"
+            type="submit"
+            aria-label="Send e-mail"
+            disabled
+          >
+            <img
+              src="./assets/arrow-button.svg"
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+            />
+          </button>
+        </form>
+        <div class="email-sent" role="status" aria-live="polite" hidden>
+          <img
+            src="./assets/wink-send.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
+        </div>
+      </div>
+    </section>
+    <section
+      class="result-page failure-page"
+      id="declined"
+      aria-labelledby="failure-title"
+      hidden
+    >
+      <div class="result-stage failure-stage">
+        <h2 id="failure-title" class="result-message failure-message">
+          <span>sorry</span>
+          <span>not this time</span>
+          <span>good luck on your</span>
+          <span>journey....</span>
+        </h2>
+      </div>
+    </section>
     <script src="./script.js"></script>
   </body>
 </html>

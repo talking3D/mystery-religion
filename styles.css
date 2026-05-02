@@ -27,6 +27,10 @@ body {
   font-family: "Pixelify Sans", "Courier New", Courier, monospace;
 }
 
+body.failure-active {
+  background: var(--blue);
+}
+
 .landing {
   display: grid;
   min-height: 100vh;
@@ -299,6 +303,172 @@ body {
   translate: 0 -1.5%;
 }
 
+.result-page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.failure-page {
+  background: var(--blue);
+}
+
+.result-stage {
+  position: relative;
+  container-type: inline-size;
+  width: min(100vw, calc(100vh * 1440 / 1024));
+  aspect-ratio: 1440 / 1024;
+  overflow: hidden;
+}
+
+.success-stage {
+  background: var(--white);
+}
+
+.failure-stage {
+  background: var(--blue);
+}
+
+.result-message {
+  position: absolute;
+  left: 50%;
+  display: grid;
+  width: 72.222222%;
+  margin: 0;
+  translate: -50% 0;
+  font-size: clamp(2.4rem, 6.73cqw, 6.057rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.result-message span {
+  display: block;
+}
+
+.success-message {
+  top: 18.75%;
+  color: var(--blue);
+}
+
+.failure-message {
+  top: 31.054688%;
+  color: var(--white);
+}
+
+.email-form {
+  position: absolute;
+  top: 68.554688%;
+  left: 24.236111%;
+  display: grid;
+  grid-template-columns: 57.277628% 32.884097%;
+  width: 51.527778%;
+  align-items: end;
+  gap: 9.838275%;
+}
+
+.email-field {
+  display: grid;
+  min-width: 0;
+  gap: 0.5rem;
+}
+
+.email-field label {
+  padding-inline: 1.4rem;
+  color: var(--blue);
+  font-size: clamp(1rem, 2.223cqw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+
+.email-field input {
+  width: 100%;
+  height: clamp(3rem, 5.33cqw, 4.797rem);
+  padding: 0.05em 1.5rem 0;
+  border: clamp(2px, 0.223cqw, 3.202px) solid var(--blue);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--blue);
+  font: inherit;
+  font-size: clamp(1rem, 1.778cqw, 1.601rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  outline: 0;
+}
+
+.email-field input::placeholder {
+  color: #979393;
+  opacity: 1;
+}
+
+.email-submit {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: clamp(3rem, 5.347cqw, 4.8125rem);
+  aspect-ratio: 244 / 77;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  overflow: visible;
+  transition:
+    opacity 140ms ease,
+    scale 140ms ease,
+    translate 140ms ease;
+}
+
+.email-submit img {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: -1.64%;
+  width: 103.28%;
+  max-width: none;
+  height: 110.39%;
+  pointer-events: none;
+}
+
+.email-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.email-submit:not(:disabled):hover {
+  scale: 1.03;
+  translate: 0 -2%;
+}
+
+.email-field input:focus-visible,
+.email-submit:focus-visible {
+  outline: max(2px, 0.25vw) solid var(--blue);
+  outline-offset: max(3px, 0.35vw);
+}
+
+.email-sent {
+  position: absolute;
+  top: 68.554688%;
+  left: 50%;
+  display: grid;
+  width: clamp(4.25rem, 9.306cqw, 8.375rem);
+  aspect-ratio: 134 / 171.66;
+  place-items: center;
+  translate: -50% 0;
+}
+
+.email-sent img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -407,6 +577,64 @@ body {
   .form-submit {
     height: 3.625rem;
     font-size: clamp(2.5rem, 14.79vw, 3.6rem);
+  }
+
+  .result-stage {
+    width: 100vw;
+    min-height: 100dvh;
+    aspect-ratio: auto;
+  }
+
+  .result-message {
+    width: min(100vw - 2rem, 22rem);
+    font-size: clamp(2rem, 12.5vw, 3.05rem);
+    letter-spacing: 0.12em;
+  }
+
+  .success-message {
+    top: 23.5%;
+  }
+
+  .failure-message {
+    top: 35%;
+  }
+
+  .email-form {
+    top: 65.25%;
+    left: 50%;
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100vw - 3rem, 20.0625rem);
+    justify-items: center;
+    gap: 0.85rem;
+    translate: -50% 0;
+  }
+
+  .email-field {
+    gap: 0.375rem;
+  }
+
+  .email-field label {
+    padding-inline: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .email-field input {
+    height: 3.25rem;
+    padding-inline: 1rem;
+    border-width: 3px;
+    font-size: 1.05rem;
+  }
+
+  .email-submit {
+    align-self: end;
+    width: min(10rem, 78%);
+    height: auto;
+    max-width: calc(100vw - 3rem);
+  }
+
+  .email-sent {
+    top: 64%;
+    width: 6.2rem;
   }
 }
 
