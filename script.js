@@ -11,6 +11,7 @@ const emailSubmitButton = document.querySelector(".email-submit");
 const emailSent = document.querySelector(".email-sent");
 
 const pages = [landing, formPage, successPage, failurePage];
+let acceptedApplication = null;
 
 function showPage(page, hash) {
   pages.forEach((currentPage) => {
@@ -37,12 +38,24 @@ function isEvenNumber(value) {
   return value !== "" && Number(value) % 2 === 0;
 }
 
+function getApplicationData(formData) {
+  return {
+    name: formData.get("name") || "",
+    currentThought: formData.get("current-thought") || "",
+    favouriteColour: formData.get("favourite-colour") || "",
+    anxious: formData.get("anxious") || "",
+    ghosts: formData.get("ghosts") || "",
+    luckyNumber: formData.get("lucky-number") || "",
+  };
+}
+
 function showResult() {
   const formData = new FormData(form);
   const believesInGhosts = formData.get("ghosts") === "yes";
   const pickedEvenNumber = isEvenNumber(formData.get("lucky-number"));
 
   if (believesInGhosts && pickedEvenNumber) {
+    acceptedApplication = getApplicationData(formData);
     emailForm.hidden = false;
     emailSent.hidden = true;
     emailForm.reset();
@@ -52,6 +65,23 @@ function showResult() {
   }
 
   showPage(failurePage, "#declined");
+}
+
+async function submitAcceptedApplication(email) {
+  const response = await fetch("/api/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ...acceptedApplication,
+      email,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Submission failed");
+  }
 }
 
 landingJoinButton.addEventListener("click", (event) => {
@@ -72,16 +102,27 @@ form.addEventListener("submit", (event) => {
 });
 
 emailForm.addEventListener("input", updateEmailSubmitState);
-emailForm.addEventListener("submit", (event) => {
+emailForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!emailForm.checkValidity()) {
     updateEmailSubmitState();
     return;
   }
 
-  emailForm.hidden = true;
-  emailSent.hidden = false;
-  history.replaceState(null, "", "#accepted-sent");
+  const formData = new FormData(emailForm);
+
+  emailSubmitButton.disabled = true;
+
+  try {
+    await submitAcceptedApplication(formData.get("email"));
+    emailForm.hidden = true;
+    emailSent.hidden = false;
+    history.replaceState(null, "", "#accepted-sent");
+  } catch (error) {
+    console.error(error);
+    emailSubmitButton.disabled = false;
+    alert("Sorry, we could not send your application. Please try again.");
+  }
 });
 
 if (window.location.hash === "#join-form") {
