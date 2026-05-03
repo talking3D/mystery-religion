@@ -130,17 +130,22 @@ body.failure-active {
 
 .form-page {
   display: grid;
+  width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: center;
   justify-items: center;
   align-items: start;
   padding: 3.5625rem 1.5rem 3.5rem;
+  overflow-x: hidden;
   background: var(--white);
 }
 
 .join-form {
   display: grid;
-  width: min(100%, 33.1875rem);
+  justify-self: center;
+  width: 100%;
   max-width: 33.1875rem;
   margin-top: 4.375rem;
   margin-inline: auto;
@@ -148,7 +153,9 @@ body.failure-active {
 }
 
 .form-intro {
-  width: min(100vw - 3rem, 81.125rem);
+  justify-self: center;
+  width: 100%;
+  max-width: 81.125rem;
   margin: 0;
   color: var(--black);
   font-size: clamp(1.65rem, 2.777778vw, 2.5rem);
@@ -193,6 +200,8 @@ body.failure-active {
 }
 
 .form-field input[type="text"] {
+  appearance: none;
+  -webkit-appearance: none;
   width: 100%;
   height: 5.994rem;
   padding: 0.05em 1.5rem 0;
@@ -242,6 +251,8 @@ body.failure-active {
 }
 
 .choice-button {
+  appearance: none;
+  -webkit-appearance: none;
   display: grid;
   width: 100%;
   height: 4.9375rem;
@@ -268,6 +279,8 @@ body.failure-active {
 }
 
 .form-submit {
+  appearance: none;
+  -webkit-appearance: none;
   display: grid;
   width: 100%;
   height: 6rem;
@@ -530,14 +543,13 @@ body.failure-active {
   }
 
   .join-form {
-    width: min(100%, 20.0625rem);
     max-width: 20.0625rem;
     margin-top: 2.5rem;
     gap: 1.95rem;
   }
 
   .form-intro {
-    width: min(100vw - 2rem, 21.875rem);
+    max-width: 21.875rem;
     font-size: clamp(1.02rem, 6.15vw, 1.5rem);
   }
 
