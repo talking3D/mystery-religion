@@ -22,7 +22,24 @@ function base64Url(value) {
 }
 
 function normalizePrivateKey(privateKey) {
-  return privateKey.replace(/\\n/g, "\n");
+  const key = privateKey.trim().replace(/\\\\n/g, "\n").replace(/\\n/g, "\n");
+  const match = key.match(
+    /-----BEGIN PRIVATE KEY-----\s*([A-Za-z0-9+/=\s]+)\s*-----END PRIVATE KEY-----/,
+  );
+
+  if (!match) {
+    return key;
+  }
+
+  const body = match[1].replace(/\s+/g, "");
+  const lines = body.match(/.{1,64}/g) || [];
+
+  return [
+    "-----BEGIN PRIVATE KEY-----",
+    ...lines,
+    "-----END PRIVATE KEY-----",
+    "",
+  ].join("\n");
 }
 
 function createJwt() {
